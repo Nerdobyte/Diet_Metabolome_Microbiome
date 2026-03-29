@@ -19,10 +19,6 @@ The runnable workflow expects this **three-folder layout** next to each other:
   - `Rscript …/scripts/<script>.R` → parent of `scripts/` if that parent has `input/`.
   - Or `getwd()` is the project root (has `input/`), or `getwd()` is `scripts/` (then parent is used), or a direct child of `getwd()` contains `input/`.
 
-### Legacy `outputs/` folder
-
-Older runs may have used **`outputs/`** (plural). Current scripts write only to **`output/`** (singular). Migrate or re-run script 1 if paths look wrong.
-
 ## R packages
 
 Install as needed (versions will affect MissForest numerics; pin for full reproducibility):
