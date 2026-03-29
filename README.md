@@ -41,7 +41,7 @@ Install as needed (versions will affect MissForest numerics; pin for full reprod
 | `Taxa_MGS.matL7b.txt` | 2 |
 | `Link_microbiome_metabolome_samples.csv` | 2 |
 
-Script **2–4** expect script **1** to have written `output/output_for_missforest_T22pt1_ALLmol_nodup.csv` (and script 1 also produces other T21/T22 files used downstream).
+Script **2-4** expect script **1** to have written `output/output_for_missforest_T22pt1_ALLmol_nodup.csv` (and script 1 also produces other T21/T22 files used downstream).
 
 ## Run order
 
@@ -54,7 +54,7 @@ Rscript Scripts_Curated/scripts/3_sem_taxon_hormone_heatmap_curated.R
 Rscript Scripts_Curated/scripts/4_boxwhisker_plots_and_peak_stats_curated.R
 ```
 
-### Script 1 — imputation and exports
+### Script 1: imputation and exports
 
 - Reads T20, drops metadata columns, keeps **non-oral** rows for MissForest; **oral** rows are appended again for T22-wide outputs.
 - **Per-metabolite** MissForest: each fit uses only `Diet`, `PatientID`, `Location`, `Timepoint`, and **one** metabolite column (no mixing of analytes in a single forest).
@@ -70,7 +70,7 @@ Rscript Scripts_Curated/scripts/4_boxwhisker_plots_and_peak_stats_curated.R
 - `aa_inputs_frameshiftcorrected/aaNN_*.csv` — per-metabolite tables for Origin-style workflows  
 - `Halla_20240623/GUT_halla_D*.csv` — diet-stratified matrices for Halla-style use  
 
-### Script 2 — preprocessing, heatmaps, microbiome merge
+### Script 2: preprocessing, heatmaps, microbiome merge
 
 - Combines T22 metabolites (excludes patients 11–12, drops Oral location in the combined long table) with hormone data; writes long combined table.
 - Builds **ComplexHeatmap** PDF: `figures/location_heatmaps.pdf` (Gastric, Duodenal, Ileal pages; z-scored values by molecule).
@@ -84,11 +84,11 @@ Rscript Scripts_Curated/scripts/4_boxwhisker_plots_and_peak_stats_curated.R
 - `lm_glp1_by_timepoint_diet.csv` — `GLP_1 ~ abundance` slope by timepoint and diet  
 - `figures/location_heatmaps.pdf`  
 
-### Script 3 — SEM / hormone panels
+### Script 3: SEM / hormone panels
 
 - Reads `output_for_missforest_T22pt1_ALLmol_nodup.csv` and runs lavaan-driven summaries; saves hormone-related plots and a combined taxon–hormone–metabolite heatmap figure under `output/figures/` (e.g. `hormone_*.png`, `hormone_panel_grid.png`, `p_combined_taxon_hormone_metabolite_heatmap.png`).
 
-### Script 4 — box plots and peak timepoints
+### Script 4: box plots and peak timepoints
 
 - Reads `output_for_missforest_T22pt1_ALLmol_nodup.csv`, pivots long, and saves PNGs under `output/figures/` in subfolders such as `boxwhisker_basic/`, `boxwhisker_clean_all/`, and `peak_timepoints/` (one set per metabolite column).
 
@@ -96,12 +96,7 @@ Rscript Scripts_Curated/scripts/4_boxwhisker_plots_and_peak_stats_curated.R
 
 MissForest output depends on **R version**, **missForest** and **ranger/randomForest** versions, and **RNG**. The same code and seed can still differ across machines if packages differ. For strict replication, record `sessionInfo()` and package versions after a successful run.
 
-## Other directories in the repo
-
-- `repo/`, `Diet_metabo_code_backup1/`, etc. — older snapshots or backups; not the primary run path.
-- Legacy **`outputs/`** (plural) under `Scripts_Curated` may remain from an older layout; the curated scripts write to **`output/`** (singular).
-
 ## Publication
-Dietary Modulation of The Human Small Intestine Metabolome and Microbiome
+"Dietary Modulation of The Human Small Intestine Metabolome and Microbiome"
 _(**Nadia Fernandes, Mingzhu Cai, Frederick J Warren,** Anthony Duncan, Hannah Harris, Jose Ivan Serrano Contreras, Katarzyna Sidorczuk, Andres Bernal, Andres Castillo, Katerina Petropoulou, Dominic Blunt, Natalia Perez-Moral, Isabel Garcia-Perez, Cathrina Edwards, Falk Hildebrand, Elaine Holmes, Julien Wist, Gary Frost)_
 
